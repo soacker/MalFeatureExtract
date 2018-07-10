@@ -9,7 +9,9 @@ def getOpcodeSequence_(filename):
     p = re.compile(r'\s([a-fA-F0-9]{2}\s)+\s*([a-z]+)')
     with open(filename) as f:
         for line in f:
-            if line.startswith(".text"):
+            # if line.startswith(".text"):
+            if True:
+                line = line.strip()
                 m = re.findall(p,line)
                 if m:
                     opc = m[0][1]
@@ -85,8 +87,11 @@ def getOpcodeSequence(directorypath):
 
 
 if __name__ == '__main__':
-    directorypath = os.getcwd()+'/data'
+    directorypath = os.getcwd()+'/data/benign'
     getOpcodeSequence(directorypath)
+
+    # directorypath = os.getcwd()+'/data/malware'
+    # getOpcodeSequence(directorypath)
 
 
 

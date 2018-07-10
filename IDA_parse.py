@@ -28,11 +28,11 @@ def idaParse(filepath):
     # path = os.getcwd()
     # os.chdir('%s/data' % path)
     os.chdir(filepath)
-    for filename in glob.glob("*.*"):
+    for filename in glob.glob("*"):
         eachline = filename
         if os.path.exists(eachline):
             eachline = os.getcwd() + "\\" + filename
-            tmpExecStr =  ida32wFilePath +" -B -S"+idcScriptFileName +" " + eachline
+            tmpExecStr =  ida64wFilePath +" -B -S"+idcScriptFileName +" " + eachline
             print tmpExecStr,
             #os.system(tmpExecStr) singl process with cmdwindow
             #os.popen(tmpExecStr)  singl process without cmdwindow
@@ -53,5 +53,5 @@ def idaParse(filepath):
 
 
 if __name__ == '__main__':
-    path = os.getcwd()+'/data'
+    path = os.getcwd()+'/data/malware'
     idaParse(path)
