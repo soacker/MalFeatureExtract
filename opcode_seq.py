@@ -4,7 +4,7 @@ from collections import *
 import os
 # import pandas as pd
 
-def getOpcodeSequence(filename):
+def getOpcodeSequence_(filename):
     opcode_seq = []
     p = re.compile(r'\s([a-fA-F0-9]{2}\s)+\s*([a-z]+)')
     with open(filename) as f:
@@ -72,16 +72,21 @@ def getOpcodeSequence(filename):
 # df.to_csv("3gramfeature.csv",index=False)
 
 
-def run():
-    path = os.getcwd()
-    os.chdir('%s/kaggle' % path)
+def getOpcodeSequence(directorypath):
+    # path = os.getcwd()
+    # os.chdir('%s/kaggle' % path)
+    path = directorypath
+    os.chdir(path)
     for ff in glob.glob("*.asm"):
-        seglist = getOpcodeSequence(ff)
+        seglist = getOpcodeSequence_(ff)
+        writefile = ff.split('.')[0]+'.txt'
+        with open(writefile,'w') as wf:
+            wf.write(' '.join(seglist))
 
-    pass
 
 if __name__ == '__main__':
-    run()
+    directorypath = os.getcwd()+'/data'
+    getOpcodeSequence(directorypath)
 
 
 
